@@ -41,7 +41,7 @@ namespace CoffeeScript.Compiler.Tests
             var sourceFiles = sourceDirectory.Glob("*.coffee");
             var expectedOutputFiles = sourceFiles
                 .Select(src => Path.ChangeExtension(src.FullName, "js"))
-                .Select(src => src.Replace(sourceDirectory.ToString(), OutputDir.ToString()))
+                .Select(src => src.Replace(sourceDirectory.ToString(), outputDirectory.ToString()))
                 .OrderBy(f => f)
                 .ToArray();
 

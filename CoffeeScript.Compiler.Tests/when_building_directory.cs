@@ -14,20 +14,30 @@ namespace CoffeeScript.Compiler.Tests
     [TestFixture]
     public class when_building_directory : CompilerTestBase
     {
+        public static string[] OutputFolderParameters
+        {
+            get { return new[]
+                             {
+                                 OutputDir.FullName, "", null, " "
+                             }; }
+        }
+
         [Test]
-        public void source_directory_is_mirrored_in_output()
+        public void source_directory_is_mirrored_in_output([ValueSource("OutputFolderParameters")] string outputFolder)
         {
             var sourceDir = ExampleScripts.Valid.Hierarchy;
 
 
-            new Compiler().Compile(new CompilerOptions
-                                       {
-                                           Compile = true,
-                                           OutputDir = OutputDir.ToString(),
-                                           Path = sourceDir.ToString()
-                                       });
+            var compilerOptions = new CompilerOptions
+                                      {
+                                          Compile = true,
+                                          OutputDir = outputFolder,
+                                          Path = sourceDir.ToString()
+                                      };
 
-            AssertOutputMirrorsSource(sourceDir, OutputDir);
+            new Compiler().Compile(compilerOptions);
+
+            AssertOutputMirrorsSource(compilerOptions.Path.AsDirectory(), compilerOptions.OutputDir.AsDirectory());
         }
     }
 }

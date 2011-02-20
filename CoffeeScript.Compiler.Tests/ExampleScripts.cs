@@ -5,7 +5,7 @@ namespace CoffeeScript.Compiler.Tests
 {
     public static class ExampleScripts
     {
-        private static readonly DirectoryInfo Base = CompilerTestBase.BaseDir.SubDir("ExampleScriptFolder");
+        public static readonly DirectoryInfo Base = CompilerTestBase.BaseDir.SubDir("ExampleScriptFolder");
 
         public static class Valid
         {

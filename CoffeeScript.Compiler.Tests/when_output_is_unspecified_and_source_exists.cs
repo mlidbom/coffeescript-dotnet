@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace CoffeeScript.Compiler.Tests
 {
     [TestFixture]
-    public class when_output_is_unspecified_and_source_exists
+    public class when_output_is_unspecified_and_source_exists : CompilerTestBase
     {
         private string Compile(string path)
         {

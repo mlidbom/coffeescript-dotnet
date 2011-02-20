@@ -1,9 +1,11 @@
 #region usings
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using CoffeeScript.Compiler.Util;
 using NUnit.Framework;
+using System.Linq;
 
 #endregion
 
@@ -17,10 +19,21 @@ namespace CoffeeScript.Compiler.Tests
 
         public static readonly string NonExistingPath = @"Q:\nonsense\nonsense\nonsense\nonsense";
 
-        [SetUp]
-        public void CleanOutputDir()
+        protected CompilerTestBase(IEnumerable<DirectoryInfo> additionalOutputDirectories = null)
         {
-            OutputDir.Glob("*.*").ForEach(f => f.Delete());
+            OutputDirectories = new[] { OutputDir, ExampleScripts.Base };
+            if (additionalOutputDirectories != null)
+            {
+                OutputDirectories = OutputDirectories.Concat(additionalOutputDirectories);
+            }
         }
+
+        [SetUp]
+        public void CleanOutputDirectoriesFromJsFiles()
+        {
+            OutputDirectories.ForEach(dir => dir.Glob("*.js").ForEach(f => f.Delete()));
+        }
+
+        protected IEnumerable<DirectoryInfo> OutputDirectories { get; private set; }
     }
 }

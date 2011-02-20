@@ -53,7 +53,7 @@ namespace CoffeeScript.Compiler.Tests
             Console.WriteLine("Got:");
             actualOutputFiles.ForEach(Console.WriteLine);
 
-            Assert.That(actualOutputFiles, Is.EqualTo(expectedOutputFiles));
+            Assert.That(actualOutputFiles, Is.EqualTo(expectedOutputFiles), "Expected output directory to mirror structure of source directory.");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using CoffeeScript.Compiler.Util;
 
 namespace CoffeeScript.Compiler.Tests
 {
@@ -30,6 +31,7 @@ namespace CoffeeScript.Compiler.Tests
             var sourceDir = ExampleScripts.Valid.Relative;
             var dest = Compile(sourceDir);
             Assert.IsTrue(File.Exists(dest),"File " + dest + " should be compiled in place");
+            AssertTargetMirrorsSource(sourceDirectory: sourceDir.AsDirectory(), targetDirectory: sourceDir.AsDirectory());
         }
 
 
@@ -39,6 +41,7 @@ namespace CoffeeScript.Compiler.Tests
             var sourceDir = ExampleScripts.Valid.Relative;
             var dest = Compile(sourceDir);
             Assert.IsTrue(File.Exists(dest), "Relative path should work.");
+            AssertTargetMirrorsSource(sourceDirectory: sourceDir.AsDirectory(), targetDirectory: sourceDir.AsDirectory());
         }
 
         [TearDown]

@@ -80,9 +80,7 @@ namespace CoffeeScript.Compiler
                 else
                 {
                     string dest;
-                    dest = opt.OutputDir.IsNullOrWhiteSpace() ? 
-                                        sourcePath 
-                                        : sourcePath.Replace(opt.Path, opt.OutputDir);
+                    dest = sourcePath.Replace(opt.Path, opt.OutputDir);
                     
                     dest = Path.ChangeExtension(dest, ".js");
                     var destDir = new FileInfo(dest).Directory;

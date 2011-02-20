@@ -14,6 +14,10 @@ namespace CoffeeScript.Compiler.Tests
     [TestFixture]
     public class when_building_directory : CompilerTestBase
     {
+        public when_building_directory():base(OutputFolderParameters.Where(dir => !dir.IsNullOrWhiteSpace()).Select(dir => dir.AsDirectory()))
+        {
+            
+        }
         public static string[] OutputFolderParameters
         {
             get { return new[]

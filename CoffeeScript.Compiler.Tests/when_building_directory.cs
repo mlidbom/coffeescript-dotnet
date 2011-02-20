@@ -27,7 +27,7 @@ namespace CoffeeScript.Compiler.Tests
                                            Path = sourceDir.ToString()
                                        });
 
-            AssertTargetMirrorsSource(sourceDir, OutputDir);
+            AssertOutputMirrorsSource(sourceDir, OutputDir);
         }
     }
 }

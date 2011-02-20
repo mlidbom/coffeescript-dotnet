@@ -36,24 +36,24 @@ namespace CoffeeScript.Compiler.Tests
 
         protected IEnumerable<DirectoryInfo> OutputDirectories { get; private set; }
 
-        protected static void AssertTargetMirrorsSource(DirectoryInfo sourceDirectory, DirectoryInfo targetDirectory)
+        protected static void AssertOutputMirrorsSource(DirectoryInfo sourceDirectory, DirectoryInfo outputDirectory)
         {
             var sourceFiles = sourceDirectory.Glob("*.coffee");
-            var expectedTargetFiles = sourceFiles
+            var expectedOutputFiles = sourceFiles
                 .Select(src => Path.ChangeExtension(src.FullName, "js"))
                 .Select(src => src.Replace(sourceDirectory.ToString(), OutputDir.ToString()))
                 .OrderBy(f => f)
                 .ToArray();
 
-            var actualTargetFiles = targetDirectory.Glob("*.js*").Select(f => f.FullName).OrderBy(f => f).ToArray();
+            var actualOutputFiles = outputDirectory.Glob("*.js*").Select(f => f.FullName).OrderBy(f => f).ToArray();
 
             Console.WriteLine("Expecting:");
-            expectedTargetFiles.ForEach(Console.WriteLine);
+            expectedOutputFiles.ForEach(Console.WriteLine);
 
             Console.WriteLine("Got:");
-            actualTargetFiles.ForEach(Console.WriteLine);
+            actualOutputFiles.ForEach(Console.WriteLine);
 
-            Assert.That(actualTargetFiles, Is.EqualTo(expectedTargetFiles));
+            Assert.That(actualOutputFiles, Is.EqualTo(expectedOutputFiles));
         }
     }
 }

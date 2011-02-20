@@ -15,7 +15,7 @@ namespace CoffeeScript.Compiler.Tests
             Assert.Throws<SourceNotFoundException>(() => new Compiler().Compile(new CompilerOptions
                                                                            {
                                                                                Compile = true,
-                                                                               Path = @"Q:\nonsense\nonsense\nonsense\nonsense"
+                                                                               Path = NonExistingPath
                                                                            }));
         }
     }

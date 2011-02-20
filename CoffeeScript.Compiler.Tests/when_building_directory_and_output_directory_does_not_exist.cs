@@ -17,7 +17,7 @@ namespace CoffeeScript.Compiler.Tests
                                                                            {
                                                                                Compile = true,
                                                                                Path = Environment.CurrentDirectory,
-                                                                               OutputDir = @"Q:\nonsense\nonsense\nonsense\nonsense"
+                                                                               OutputDir = NonExistingPath
                                                                            }));
         }
     }
